@@ -88,7 +88,7 @@ html, body {
 
 a {
 	color: #CCC;
-  text-decoration: none !important;
+  text-decoration: none ;
 }
 a:hover {
 	color: #F99;
@@ -778,6 +778,7 @@ Banner Style
   min-height: 380px;
   border-radius: 23px;
   padding: 80px 60px;
+  background-color: #1f2122;
 }
 
 .main-banner h6 {
@@ -806,18 +807,34 @@ Most Popular Style
 
 .most-popular {
   margin-top: 60px;
-  padding: 30px;
+  padding: 30px 30px 10px;
   background-color: #1f2122;
   border-radius: 23px;
 }
-
-.most-popular .item {
-  background-color: #27292a;
-  padding: 30px 15px;
-  border-radius: 23px;
-  margin-bottom: 30px;
+.most-popular .item{
+  margin-bottom:20px;
 }
-
+.genres{
+  margin-top:7px;
+  font-size: 12px;
+  color:#666;
+  white-space: wrap;
+}
+.most-popular .item img{
+  object-fit: cover;
+}
+.most-popular .item{
+  background-color: #27292a;
+  padding: 20px 15px 15px;
+  border-radius: 23px;
+  display: block;
+}
+.most-popular .item .bttn-wrap{
+  margin-top: 15px;
+}
+.most-popular .item .bttn-wrap a{
+  text-decoration: underline;
+}
 .most-popular .item .item {
   padding: 0px;
   border-radius: 0px;
@@ -825,15 +842,16 @@ Most Popular Style
   margin-bottom: 0px;
 }
 
-.most-popular .item img {
+.most-popular .item figure {
   border-radius: 23px;
+  overflow:hidden;
+  margin-bottom: 15px;
 }
 
 .most-popular .item h4 {
   font-size: 15px;
-  margin-top: 20px;
-  margin-bottom: 0px;
-  display: inline-block;
+  margin: 0px;
+  display:block;
 }
 
 .most-popular .item span {
@@ -844,14 +862,24 @@ Most Popular Style
 }
 
 .most-popular .item ul {
-  float: right;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .most-popular .item ul li {
-  text-align: right;
+  text-align: left;
   color: #fff;
   font-size: 14px;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+-ms-flex-wrap:wrap;
+  flex-wrap:wrap;
+-webkit-box-align:center;
+  -ms-flex-align:center;
+      align-items:center;
+-webkit-box-pack:justify;
+  -ms-flex-pack:justify;
+      justify-content:space-between;
 }
 
 .most-popular .item ul li:first-child i {
@@ -864,7 +892,8 @@ Most Popular Style
 
 .most-popular .main-button {
   text-align: center;
-  margin-bottom: -53px;
+  /* margin-bottom: -53px; */
+  transform: translateY(32px);
 }
 
 /* 

@@ -1,4 +1,5 @@
 import React , {useState, useEffect} from 'react';
+import Link from 'next/link';
 
 const Header = () => {
 
@@ -26,18 +27,13 @@ const Header = () => {
                 </div>
                 <ul className="nav">
                   <li>
-                    <a href="index.html" className="active">
-                      Home
-                    </a>
+                    <Link href='/'>Home</Link>
                   </li>
                   <li>
-                    <a href="browse.html">Browse</a>
+                    <Link href='/'>Movies</Link>
                   </li>
                   <li>
-                    <a href="details.html">Details</a>
-                  </li>
-                  <li>
-                    <a href="streams.html">Streams</a>
+                    <Link href='/'>Genre</Link>
                   </li>
                   <li>
                     <a href="profile.html">

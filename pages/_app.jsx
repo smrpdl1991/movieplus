@@ -44,15 +44,14 @@ function MyApp({ Component, pageProps }) {
         </div>
       </div>
       <Header />
-      <main class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="page-content">
+      <main className="container">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="page-content">
               <Component {...pageProps} />
             </div>
           </div>
         </div>
-
       </main>
       <Footer />
     </>
