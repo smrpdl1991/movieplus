@@ -5,15 +5,14 @@ const Header = () => {
 
   return (
     <>
-      
       <header className="header-area header-sticky">
         <div className="container">
           <div className="row">
             <div className="col-12">
               <nav className="main-nav">
-                <a href="index.html" className="logo">
+                <Link href="/" className="logo">
                    Movie Plus
-                </a>
+                </Link>
                 <div className="search-input">
                   <form id="search" action="#">
                     <input
@@ -36,14 +35,14 @@ const Header = () => {
                     <Link href='/'>Genre</Link>
                   </li>
                   <li>
-                    <a href="profile.html">
+                    <Link href="profile.html">
                       Profile 
-                    </a>
+                    </Link>
                   </li>
                 </ul>
-                <a className="menu-trigger">
+                <span className="menu-trigger">
                   <span>Menu</span>
-                </a>
+                </span>
               </nav>
             </div>
           </div>
