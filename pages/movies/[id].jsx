@@ -1,15 +1,13 @@
-import { useRouter } from 'next/router';
 import apiConfig from '../../config/apiConfig';
 import axios from 'axios';
-import Image from 'next/image';
+import MovieList from '@/components/section/movieListSection';
 
 const MoviePage = ({ movie , suggestedMovie}) => {
-  // const router = useRouter();
-  // const { id } = router.query;
-  console.log(movie);
+  if(!movie) return null;
+  if(!suggestedMovie) return null;
+  const suggestedMovies = suggestedMovie.movies ;
   return (
     <div className='single'>
-
       <div className="row">
         <div className="col-lg-12">
           <div className="feature-banner header-text">
@@ -43,117 +41,50 @@ const MoviePage = ({ movie , suggestedMovie}) => {
                 <div className="col-lg-6">
                   <div className="left-info">
                     <div className="left">
-                      <h4>Fortnite</h4>
-                      <span>Sandbox</span>
+                      <h4>{movie?.title}</h4>
+                      <span>{movie?.genres.map(genre => genre).join(', ')}</span>
+                      <div className='language'>Uploaded: <span>{movie?.date_uploaded}</span></div>
                     </div>
                     <ul>
-                      <li><i className="fa fa-star"></i> 4.8</li>
-                      <li><i className="fa fa-download"></i> 2.3M</li>
+                      <li>Downloads: <span>{movie?.download_count}</span></li>
+                      <li>Lang: <span>{movie?.language}</span></li>
                     </ul>
                   </div>
                 </div>
                 <div className="col-lg-6">
                   <div className="right-info">
                     <ul>
-                      <li><i className="fa fa-star"></i> 4.8</li>
-                      <li><i className="fa fa-download"></i> 2.3M</li>
-                      <li><i className="fa fa-server"></i> 36GB</li>
-                      <li><i className="fa fa-gamepad"></i> Action</li>
+                      <li>Likes: <span>{movie?.like_count}</span></li>
+                      <li>Imdb: <span>{movie?.rating}</span></li>
+                      <li>RunTime : <span>{movie?.runtime}</span></li>
+                      <li>Year: <span>{movie?.year}</span></li>
                     </ul>
                   </div>
+                  
                 </div>
-                <div className="col-lg-4">
-                  <img src="assets/images/details-01.jpg" alt="" />
-                </div>
-                <div className="col-lg-4">
-                  <img src="assets/images/details-02.jpg" alt="" />
-                </div>
-                <div className="col-lg-4">
-                  <img src="assets/images/details-03.jpg" alt="" />
-                </div>
+              
                 <div className="col-lg-12">
-                  <p>Cyborg Gaming is free HTML CSS website template provided by TemplateMo. This is Bootstrap v5.2.0 layout. You can make a <a href="https://paypal.me/templatemo" target="_blank">small contribution via PayPal</a> to info [at] templatemo.com and thank you for supporting. If you want to get the PSD source files, please contact us. Lorem ipsum dolor sit consectetur es dispic dipiscingei elit, sed doers eiusmod lisum hored tempor.</p>
+                <div className='trailer'>
+                    <iframe width="560" height="315" src={`https://www.youtube.com/embed/${movie?.yt_trailer_code}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                 </div>
-                <div className="col-lg-12">
+                {movie?.cast && <div className="cast">
+                      Cast: <span>{movie?.cast?.map((item) => item?.name).join(', ')}</span>  
+                  </div>}
+                
+                  <p>{movie?.description_intro}</p>
+                </div>
+                {/* <div className="col-lg-12">
                   <div className="main-border-button">
                     <a href="#">Download Fortnite Now!</a>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="other-games">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="heading-section">
-              <h4><em>Other Related</em> Movies</h4>
-            </div>
-          </div>
-          <div className="col-lg-6">
-            <div className="item">
-              <img src="assets/images/game-01.jpg" alt="" className="templatemo-item" />
-              <h4>Dota 2</h4><span>Sandbox</span>
-              <ul>
-                <li><i className="fa fa-star"></i> 4.8</li>
-                <li><i className="fa fa-download"></i> 2.3M</li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-lg-6">
-            <div className="item">
-              <img src="assets/images/game-02.jpg" alt="" className="templatemo-item" />
-              <h4>Dota 2</h4><span>Sandbox</span>
-              <ul>
-                <li><i className="fa fa-star"></i> 4.8</li>
-                <li><i className="fa fa-download"></i> 2.3M</li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-lg-6">
-            <div className="item">
-              <img src="assets/images/game-03.jpg" alt="" className="templatemo-item" />
-              <h4>Dota 2</h4><span>Sandbox</span>
-              <ul>
-                <li><i className="fa fa-star"></i> 4.8</li>
-                <li><i className="fa fa-download"></i> 2.3M</li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-lg-6">
-            <div className="item">
-              <img src="assets/images/game-02.jpg" alt="" className="templatemo-item" />
-              <h4>Dota 2</h4><span>Sandbox</span>
-              <ul>
-                <li><i className="fa fa-star"></i> 4.8</li>
-                <li><i className="fa fa-download"></i> 2.3M</li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-lg-6">
-            <div className="item">
-              <img src="assets/images/game-03.jpg" alt="" className="templatemo-item" />
-              <h4>Dota 2</h4><span>Sandbox</span>
-              <ul>
-                <li><i className="fa fa-star"></i> 4.8</li>
-                <li><i className="fa fa-download"></i> 2.3M</li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-lg-6">
-            <div className="item">
-              <img src="assets/images/game-01.jpg" alt="" className="templatemo-item" />
-              <h4>Dota 2</h4><span>Sandbox</span>
-              <ul>
-                <li><i className="fa fa-star"></i> 4.8</li>
-                <li><i className="fa fa-download"></i> 2.3M</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      <MovieList title="Related Movies" movies={suggestedMovies} readMore={false}/>
     </div>
   );
 };
@@ -171,12 +102,12 @@ export async function getServerSideProps(context) {
     const suggestionresponse = await axios.get(`${apiConfig.baseUrl}/movie_suggestions.json`, {
       params: {
         movie_id: id,
-        limit: 4,
       },
     });
 
-    const movie = response.data.data.movie;
-    const suggestedMovie = suggestionresponse.data.data.movie;
+    const movie = response.data.data.movie || null;
+    const suggestedMovie = suggestionresponse.data.data || null;
+
 
     return {
       props: {
@@ -189,6 +120,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         movie: null,
+        suggestedMovie: null
       },
     };
   }

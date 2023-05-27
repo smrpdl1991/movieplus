@@ -6,12 +6,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Home = ({latestMovies, popularMovies}) => {
+  if(!latestMovies) return null;
+  if(!popularMovies) return null;
   return (
     <>
       <BannerSection />
-      <MovieList title="Most Liked Movies" movies={popularMovies} />
-      <MovieList title="Latest Movies" movies={latestMovies}/>
-      {/* <MovieList title="Upcoming Movies" movies={upcomingMovies}/> */}
+      <MovieList title="Most Liked Movies" movies={popularMovies} readMore={true} />
+      <MovieList title="Latest Movies" movies={latestMovies} readMore={true}/>
       <ToastContainer />
     </>
   )

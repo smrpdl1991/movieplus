@@ -1294,7 +1294,23 @@ Live Stream Style
   text-align: center;
   margin-bottom: -53px;
 }
-
+.language, .cast{
+  color:#fff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap:10px;
+}
+.cast{
+  margin-bottom: 20px;
+}
+.language span,
+.cast span{
+  margin-top:0 ! important;
+}
+.trailer{
+  margin-bottom:20px;
+}
 /* 
 ---------------------------------------------
 Featured Banner Style

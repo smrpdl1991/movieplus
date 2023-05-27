@@ -1,12 +1,11 @@
 import Image from "next/image"
 import Link from "next/link"
 const MovieItem = ({item}) => {
-    console.log(item)
     return (
         <div className="item">
             <figure>
                 <Link href={`/movies/${item?.id}`}>
-                    <Image src={item?.large_cover_image} alt={item?.title} width={186} height={143} />
+                    <Image src={item?.large_cover_image || item?.medium_cover_image || item?.small_cover_image} alt={item?.title} width={186} height={143} />
                 </Link>
             </figure>
             <h4><Link href={`/movies/${item?.id}`}>{item?.title}</Link></h4>

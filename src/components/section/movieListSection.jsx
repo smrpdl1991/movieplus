@@ -1,13 +1,13 @@
 import Link from "next/link"
 import MovieItem from "../element/movieItem"
-import { useEffect ,useState} from "react";
+import { useEffect, useState } from "react";
 
-const MovieList = ({title, movies}) => {
+const MovieList = ({ title, movies, readMore }) => {
   const [movieData, setMovieData] = useState([]);
   if (!movies) {
-    return null; // Return null or a placeholder component if movies is undefined
+    return null; 
   }
-  
+
   useEffect(() => {
     setMovieData(movies);
   }, [movies]);
@@ -19,18 +19,18 @@ const MovieList = ({title, movies}) => {
             <h4>{title}</h4>
           </div>
           <div className="row">
-            {movieData.map((item)=>{
+            {movieData.map((item) => {
               return (
-              <div className="col-lg-3 col-sm-6" key={item?.id}>
-                <MovieItem item={item}/>
-              </div>
+                <div className="col-lg-3 col-sm-6" key={item?.id}>
+                  <MovieItem item={item} />
+                </div>
               )
-            })} 
-            <div className="col-lg-12">
+            })}
+            {readMore && <div className="col-lg-12">
               <div className="main-button">
-                <Link href="/">Discover More</Link>
+                <Link href="/movies">Discover More</Link>
               </div>
-            </div>
+            </div>}
           </div>
         </div>
       </div>
