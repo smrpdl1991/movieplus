@@ -18,7 +18,7 @@ const Home = ({latestMovies, popularMovies}) => {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
     const latestResponse = await axios.get(`${apiConfig.baseUrl}/list_movies.json`, {
       params: {

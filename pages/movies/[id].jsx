@@ -89,45 +89,9 @@ const MoviePage = ({ movie , suggestedMovie}) => {
   );
 };
 
-// export async function getServerSideProps(context) {
-//   try {
-//     const { id } = context.params;
-//     const response = await axios.get(`${apiConfig.baseUrl}/movie_details.json`, {
-//       params: {
-//         movie_id: id,
-//         with_images: true,
-//         with_cast: true,
-//       },
-//     });
-//     const suggestionresponse = await axios.get(`${apiConfig.baseUrl}/movie_suggestions.json`, {
-//       params: {
-//         movie_id: id,
-//       },
-//     });
-
-//     const movie = response.data.data.movie || null;
-//     const suggestedMovie = suggestionresponse.data.data || null;
-
-
-//     return {
-//       props: {
-//         movie,
-//         suggestedMovie
-//       },
-//     };
-//   } catch (error) {
-//     console.error('Error fetching movie details:', error);
-//     return {
-//       props: {
-//         movie: null,
-//         suggestedMovie: null
-//       },
-//     };
-//   }
-// }
-export async function getStaticProps({ params }) {
+export async function getServerSideProps(context) {
   try {
-    const { id } = params;
+    const { id } = context.params;
     const response = await axios.get(`${apiConfig.baseUrl}/movie_details.json`, {
       params: {
         movie_id: id,
@@ -135,19 +99,20 @@ export async function getStaticProps({ params }) {
         with_cast: true,
       },
     });
-    const suggestionResponse = await axios.get(`${apiConfig.baseUrl}/movie_suggestions.json`, {
+    const suggestionresponse = await axios.get(`${apiConfig.baseUrl}/movie_suggestions.json`, {
       params: {
         movie_id: id,
       },
     });
 
     const movie = response.data.data.movie || null;
-    const suggestedMovie = suggestionResponse.data.data || null;
+    const suggestedMovie = suggestionresponse.data.data || null;
+
 
     return {
       props: {
         movie,
-        suggestedMovie,
+        suggestedMovie
       },
     };
   } catch (error) {
@@ -155,31 +120,8 @@ export async function getStaticProps({ params }) {
     return {
       props: {
         movie: null,
-        suggestedMovie: null,
+        suggestedMovie: null
       },
-    };
-  }
-}
-
-export async function getStaticPaths() {
-  try {
-    const response = await axios.get(`${apiConfig.baseUrl}/list_movies.json`, {
-    });
-
-    const movies = response.data.data.movies || [];
-    const paths = movies.map((movie) => ({
-      params: { id: String(movie.id) },
-    }));
-
-    return {
-      paths,
-      fallback: false, // Set to true if there are additional dynamic paths to be handled
-    };
-  } catch (error) {
-    console.error('Error fetching movie list:', error);
-    return {
-      paths: [],
-      fallback: false,
     };
   }
 }
